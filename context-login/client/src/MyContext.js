@@ -5,9 +5,9 @@ export const MyContext = React.createContext();
 export class MyProvider extends Component {
   state = {
     id: "",
-    username: "ryan",
-    email: "ryan@ryan.com",
-    loggedIn: true
+    username: "",
+    email: "",
+    loggedIn: false
   }
   render() {
     return (
@@ -18,6 +18,13 @@ export class MyProvider extends Component {
         },
         logout: ()=>{
 
+        },
+        signUp: (userData) => {
+          this.setState({
+            email: userData.email,
+            loggedIn: true,
+            username: userData.username
+          })
         }
       }}>
         {this.props.children}

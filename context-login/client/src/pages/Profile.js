@@ -10,6 +10,7 @@ const Profile = () => {
             return (
               <React.Fragment>
                 <p>yooooo {context.state.username}</p>
+                <p>yooooo {context.state.email}</p>
               </React.Fragment>
             )
           }
