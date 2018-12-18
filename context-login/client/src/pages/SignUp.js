@@ -46,7 +46,8 @@ class SignUp extends Component {
                   context.signUp({
                   email: this.state.email,
                   loggedIn: true,
-                  username: this.state.username
+                  username: this.state.username,
+                  password: this.state.password
                   })}} className="btn btn-primary">Submit</button>
               </form>
              </React.Fragment>

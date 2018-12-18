@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import API from './utils/API';
 
 export const MyContext = React.createContext();
 
@@ -7,6 +8,7 @@ export class MyProvider extends Component {
     id: "",
     username: "",
     email: "",
+    password: "",
     loggedIn: false
   }
   render() {
@@ -20,10 +22,15 @@ export class MyProvider extends Component {
 
         },
         signUp: (userData) => {
-          this.setState({
-            email: userData.email,
-            loggedIn: true,
-            username: userData.username
+          API.signup(userData)
+          .then((signedUpUser)=>{
+            console.log(signedUpUser.data)
+            this.setState({
+              _id: signedUpUser.data._id,
+              email: signedUpUser.data.email,
+              loggedIn: signedUpUser.data.loggedIn,
+              username: signedUpUser.data.username,
+            })
           })
         }
       }}>

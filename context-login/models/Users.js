@@ -7,15 +7,10 @@ var Schema = mongoose.Schema;
 // Create the noteSchema with the schema object
 var userSchema = new Schema({
 
-  // date is just a string
   username: {
     type: String,
     required: true,
     unique: true
-  },
-  name: {
-    type: String,
-    required: true
   },
   email: {
     type: String,
