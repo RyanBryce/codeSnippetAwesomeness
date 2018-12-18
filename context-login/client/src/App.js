@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         <MyProvider>
           <div>
-            <Link to="/signin">signin</Link> {"    "}
+            <Link to="/login">login</Link> {"    "}
             <Link to="/signup">signup</Link> {"    "}
             <Link to="/profile">profile</Link> {"    "}
             <div>

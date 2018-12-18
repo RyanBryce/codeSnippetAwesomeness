@@ -5,8 +5,13 @@ const Profile = () => {
     <div>
       <MyContext.Consumer>
         {
-          ({state}) => {
-
+          (context) => {
+            console.log(context)
+            return (
+              <React.Fragment>
+                <p>yooooo {context.state.username}</p>
+              </React.Fragment>
+            )
           }
         }
       </MyContext.Consumer>
