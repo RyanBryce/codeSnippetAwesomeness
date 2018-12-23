@@ -3,19 +3,24 @@ import React from 'react';
 const Profile = () => {
   return (
     <div>
-      <MyContext.Consumer>
-        {
-          (context) => {
-            console.log(context)
-            return (
-              <React.Fragment>
-                <p>yooooo {context.state.username}</p>
-                <p>yooooo {context.state.email}</p>
-              </React.Fragment>
-            )
-          }
+      <MyContext.Consumer className="row">
+      {
+        (context)=>{
+          return (
+            <div className="col-sm-4 justify-content-center offset-4">
+              <div className="card" style={{width: '18rem'}}>
+                <img className="card-img-top" src={context.state.profilePic} alt="Card pic cap" />
+                <div className="card-body">
+                  <h5 className="card-title">Welcome {context.state.username}!</h5>
+                  <p className="card-text">email: {context.state.email}</p>
+                  <p className="card-text">password: {context.state.password}</p>
+                </div>
+              </div>
+            </div>
+          )
         }
-      </MyContext.Consumer>
+      }
+    </MyContext.Consumer>
     </div>
   );
 };

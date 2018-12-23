@@ -21,7 +21,7 @@ export class MyProvider extends Component {
         logout: ()=>{
 
         },
-        signUp: (userData) => {
+        signUp: (userData, cb) => {
           API.signup(userData)
           .then((signedUpUser)=>{
             console.log(signedUpUser.data)
@@ -30,7 +30,11 @@ export class MyProvider extends Component {
               email: signedUpUser.data.email,
               loggedIn: signedUpUser.data.loggedIn,
               username: signedUpUser.data.username,
+              profilePic: signedUpUser.data.profilePic
             })
+            if(cb){
+              cb()
+            }
           })
         }
       }}>

@@ -19,6 +19,11 @@ module.exports = {
           }
           res.json(req.session.user)
         })
+        .catch((err) => {
+          console.log(err
+            );
+          res.status(402).json("Sorry there was an error with inserting")
+        })
       });
     });
  
