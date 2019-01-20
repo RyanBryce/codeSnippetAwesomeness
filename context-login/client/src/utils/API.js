@@ -4,8 +4,8 @@ export default {
   signup: (data) => {
     return axios.post("/api/user", data)
   },
-  login: () => {
-
+  login: (userData) => {
+    return axios.post("/api/user/login", userData)
   },
   logout: () => {
   

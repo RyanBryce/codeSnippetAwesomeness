@@ -18,15 +18,16 @@ class SignUp extends Component {
       [name]: value
     });
   }
-  redirect = () => {
+  redirect = (res) => {
     this.setState({
+      username: res,
       redirect: true
     });
   }
 
   render() {
     if(this.state.redirect){
-      return <Redirect to="/profile"/>
+      return <Redirect to={`/profile/${this.state.username}`}/>
     }
     return (
       <div>

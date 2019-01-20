@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {MyProvider} from './MyContext.js';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
@@ -14,11 +14,11 @@ class App extends Component {
         <MyProvider>
           <div className="container-fluid">
             <Nav></Nav>
-            <div>
-              <Route path="/signup" component={SignUp}></Route>
-              <Route path="/login" component={Login}></Route>
-              <Route path="/profile" component={Profile}></Route>
-            </div>
+            <Switch>
+              <Route exact path="/" component={Login}></Route>
+              <Route exact path="/signup" component={SignUp}></Route>
+              <Route exact path="/profile/:username" component={Profile}></Route>
+            </Switch>
           </div>
         </MyProvider>
       </div>

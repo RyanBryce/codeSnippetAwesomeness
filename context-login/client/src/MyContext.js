@@ -15,8 +15,14 @@ export class MyProvider extends Component {
     return (
       <MyContext.Provider value={{
         state: this.state,
-        login: () =>{
-
+        login: (userData, cb) =>{
+          API.login(userData)
+          .then((loggedInUser)=> {
+            this.setState(loggedInUser.data)
+            if (cb) {
+              cb(this.state.username)
+            }
+          })
         },
         logout: ()=>{
 
@@ -24,16 +30,9 @@ export class MyProvider extends Component {
         signUp: (userData, cb) => {
           API.signup(userData)
           .then((signedUpUser)=>{
-            console.log(signedUpUser.data)
-            this.setState({
-              _id: signedUpUser.data._id,
-              email: signedUpUser.data.email,
-              loggedIn: signedUpUser.data.loggedIn,
-              username: signedUpUser.data.username,
-              profilePic: signedUpUser.data.profilePic
-            })
+            this.setState(signedUpUser.data)
             if(cb){
-              cb()
+              cb(this.state.username)
             }
           })
         }

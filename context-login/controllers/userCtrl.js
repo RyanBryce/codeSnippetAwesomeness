@@ -17,7 +17,7 @@ module.exports = {
             profilePic: response.profilePic,
             loggedIn: true
           }
-          res.json(req.session.user)
+          res.status(200).json(req.session.user)
         })
         .catch((err) => {
           console.log(err
@@ -31,20 +31,27 @@ module.exports = {
     
   },
   loginUser: function (req, res) {
-    bcrypt.hash(req.body.password, 10).then((hash) => {
-      // Store hash in your password DB.
-      req.body.password = hash;
-      db.User.create(req.body)
-        .then((response) => {
-          console.log(response);
-          req.session.user = {
-            _id: response._id,
-            username: response.username,
-            email: response.email,
-            profilePic: response.profilePic
+    console.log(req.body);
+    db.User.findOne({email: req.body.email})
+    .then((response) => {
+      console.log(response);
+        bcrypt.compare(req.body.password, response.password, (err, hash) => {
+          // Store hash in your password DB.
+          if (hash) {
+            req.session.user = {
+              _id: response._id,
+              username: response.username,
+              email: response.email,
+              profilePic: response.profilePic
+            }
+            res.status(200).json(req.session.user)
+          }else{
+            res.status(418).send('incorect user name or password')
           }
-          res.json(req.session.user)
-        })
-    });
+        });
+      })
+      .catch((err) => {
+        throw err
+      })
   }
 }
