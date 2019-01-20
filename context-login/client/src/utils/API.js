@@ -9,5 +9,8 @@ export default {
   },
   logout: () => {
   
+  },
+  update: (userData) => {
+    return axios.put("/api/user", userData)
   }
 }

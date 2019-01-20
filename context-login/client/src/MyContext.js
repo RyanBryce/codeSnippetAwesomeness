@@ -5,7 +5,7 @@ export const MyContext = React.createContext();
 
 export class MyProvider extends Component {
   state = {
-    id: "",
+    _id: "",
     username: "",
     email: "",
     password: "",
@@ -35,6 +35,16 @@ export class MyProvider extends Component {
               cb(this.state.username)
             }
           })
+        },
+        update: (userData, cb)=>{
+          userData._id = this.state._id;
+          API.update(userData)
+            .then((updatedUser) => {
+              this.setState(updatedUser.data)
+              if (cb) {
+                cb(this.state.username)
+              }
+            })
         }
       }}>
         {this.props.children}

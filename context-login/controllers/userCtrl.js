@@ -42,16 +42,43 @@ module.exports = {
               _id: response._id,
               username: response.username,
               email: response.email,
-              profilePic: response.profilePic
+              profilePic: response.profilePic,
+              loggedIn: true
             }
             res.status(200).json(req.session.user)
           }else{
-            res.status(418).send('incorect user name or password')
+            res.status(418).send('incorrect user name or password')
           }
         });
       })
       .catch((err) => {
         throw err
       })
+  },
+  update: (req, res) => {
+    db.User.findOneAndUpdate(
+    {
+      _id: req.session.user._id
+    },
+    {
+      $set: req.body
+    },
+    {
+      new: true
+    }
+    ).then((updatedUserData) => {
+      console.log(updatedUserData);
+      req.session.user = {
+        _id: updatedUserData._id,
+        username: updatedUserData.username,
+        email: updatedUserData.email,
+        profilePic: updatedUserData.profilePic,
+         loggedIn: true
+      }
+      res.status(200).json(req.session.user)
+    })
+    .catch((err) => {
+      res.status(500).send(err)
+    })
   }
 }
