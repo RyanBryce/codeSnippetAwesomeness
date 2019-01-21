@@ -11,6 +11,13 @@ export class MyProvider extends Component {
     password: "",
     loggedIn: false
   }
+  componentDidMount (){
+    API.session().then((user) => {
+      this.setState(
+        user.data
+      )
+    })
+  }
   render() {
     return (
       <MyContext.Provider value={{
@@ -45,6 +52,13 @@ export class MyProvider extends Component {
                 cb(this.state.username)
               }
             })
+        },
+        session: () => {
+          API.session().then((user) => {
+            this.setState(
+              user.data
+            )
+          })
         }
       }}>
         {this.props.children}

@@ -80,5 +80,8 @@ module.exports = {
     .catch((err) => {
       res.status(500).send(err)
     })
+  },
+  session: (req, res) => {
+    res.json(req.session.user)
   }
 }

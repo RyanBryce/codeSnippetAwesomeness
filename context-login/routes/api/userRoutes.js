@@ -13,9 +13,12 @@ function authCheck(req, res, next) {
 router.route('/')
   .post(userCrtl.createUser)
   .put(authCheck, userCrtl.update)
-
+  
 router.route('/login')
-.post(userCrtl.loginUser)
+  .post(userCrtl.loginUser)
+
+router.route('/session')
+  .get(userCrtl.session)
 
 // router.route('/:id')
 // .get(function (req, res) {

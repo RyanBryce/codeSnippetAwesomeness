@@ -12,5 +12,8 @@ export default {
   },
   update: (userData) => {
     return axios.put("/api/user", userData)
+  },
+  session: (userData) => {
+    return axios.get("/api/user/session", userData)
   }
 }
