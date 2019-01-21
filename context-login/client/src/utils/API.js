@@ -7,13 +7,13 @@ export default {
   login: (userData) => {
     return axios.post("/api/user/login", userData)
   },
-  logout: () => {
-  
-  },
   update: (userData) => {
     return axios.put("/api/user", userData)
   },
-  session: (userData) => {
-    return axios.get("/api/user/session", userData)
+  logout: () => {
+    return axios.put("/api/user/logout")
+  },
+  session: () => {
+    return axios.get("/api/user/session")
   }
 }

@@ -31,8 +31,12 @@ export class MyProvider extends Component {
             }
           })
         },
-        logout: ()=>{
-
+        logout: () => {
+          API.logout().then((user)=>{
+            this.setState(
+              user.data
+            )
+          })
         },
         signUp: (userData, cb) => {
           API.signup(userData)

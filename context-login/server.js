@@ -29,6 +29,7 @@ function userSetup(req, res, next) {
       profilePic: null,
       loggedIn: false,
     }
+    //NOTE: not sure why i have this here again... maybe i should comment more :?
     req.session.user.loggedIn = false;
   }
   next()

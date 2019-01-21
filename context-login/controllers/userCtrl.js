@@ -83,5 +83,16 @@ module.exports = {
   },
   session: (req, res) => {
     res.json(req.session.user)
+  },
+  logout: (req, res) => {
+    req.session.user = {
+      _id: null,
+      name: '',
+      username: '',
+      email: '',
+      profilePic: null,
+      loggedIn: false,
+    }
+    res.json(req.session.user)
   }
 }

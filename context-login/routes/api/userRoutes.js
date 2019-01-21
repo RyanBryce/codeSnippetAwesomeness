@@ -19,20 +19,7 @@ router.route('/login')
 
 router.route('/session')
   .get(userCrtl.session)
-
-// router.route('/:id')
-// .get(function (req, res) {
   
-// })
-// .post(function(req, res){
-  
-// })
-
-// .delete(function (req, res) {
-  
-// })
-  
-
-
-
+router.route('/logout')
+  .put(userCrtl.logout)
 module.exports = router

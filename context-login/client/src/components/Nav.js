@@ -15,7 +15,7 @@ const Nav = () => {
                 </li>
               ):(
                 <li className="nav-item">
-                  <Link className="nav-link" to="/">Logout</Link>
+                  <Link className="nav-link" to="/" onClick={context.logout}>Logout</Link>
                 </li>
               )
             }
