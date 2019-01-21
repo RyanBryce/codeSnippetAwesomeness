@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import { MyContext } from "../MyContext";
 class Login extends Component {
   state = {
@@ -58,8 +58,9 @@ class Login extends Component {
                   />
                 </div>
                 <div className="form-group form-check">
-                  <input type="checkbox" className="form-check-input" />
-                  <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                  <Link to={'/forgot'} >
+                    <label className="form-check-label">Forgot Password</label>  
+                  </Link>
                 </div>
                 <button className="btn btn-primary" onClick={(e)=>{
                   
