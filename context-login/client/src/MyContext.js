@@ -63,6 +63,13 @@ export class MyProvider extends Component {
               user.data
             )
           })
+        },
+        forgotPassword: (email, cb) => {
+          API.forgotPassword(email).then((res)=>{
+            if (cb) {
+              cb(this.state.username)
+            }
+          })
         }
       }}>
         {this.props.children}

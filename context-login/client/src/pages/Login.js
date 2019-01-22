@@ -57,7 +57,7 @@ class Login extends Component {
                   onChange={this.handleChange}
                   />
                 </div>
-                <div className="form-group form-check">
+                <div className="form-group">
                   <Link to={'/forgot'} >
                     <label className="form-check-label">Forgot Password</label>  
                   </Link>

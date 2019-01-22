@@ -15,5 +15,8 @@ export default {
   },
   session: () => {
     return axios.get("/api/user/session")
+  },
+  forgotPassword: (email) => {
+    return axios.get("/api/user/session")
   }
 }

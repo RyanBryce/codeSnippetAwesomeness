@@ -29,6 +29,14 @@ var userSchema = new Schema({
     type: Boolean,
     default: false
   },
+  resetPasswordToken: {
+    type: String,
+    required: false
+  },
+  resetPasswordToken: {
+    type: Date,
+    required: false
+  }
 });
 
 // Create the Note model using the noteSchema

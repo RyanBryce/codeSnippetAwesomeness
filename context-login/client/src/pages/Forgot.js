@@ -40,7 +40,7 @@ class Login extends Component {
                 <button 
                   className="btn btn-primary" 
                   onClick={(e)=>{
-                    context.login(this.state, this.handleRedirect)
+                    context.forgotPassword(this.state, this.handleRedirect)
                   }}
                 >Submit</button>
               </div>
