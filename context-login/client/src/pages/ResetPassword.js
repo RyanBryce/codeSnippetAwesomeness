@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {Redirect} from 'react-router-dom';
 import { MyContext } from "../MyContext";
-class Login extends Component {
+import API from '../utils/API';
+
+class ResetPassword extends Component {
   state = {
     password: "",
     confirmPassword: "",
-    redirect: false
+    email: "",
+    redirect: false,
+    tokenStatus: ""
   }
   
   handleChange = (event)=>{
@@ -16,17 +20,30 @@ class Login extends Component {
   }
   componentDidMount(){
     console.log(this.props);
+    API.checkToken(this.props.match.params.token).then((token) => {
+      console.log(token);
+      this.setState(
+        token.data
+      )
+    })
   }
   handleRedirect = (res) => {
   this.setState({
-    username: res,
     redirect: true
   });
   }
   render() {
     if(this.state.redirect){
-      return <Redirect to={`/profile/${this.state.username}`}></Redirect>
-    }else{
+      return <Redirect to={`/`}></Redirect>
+    }
+    else if (this.state.tokenStatus === "expired") {
+      return (
+      <Fragment>
+        <h1>Well this is wierd, your tokens like totally expired... Resending that email could fix it for you though</h1>
+      </Fragment>
+      )
+    }
+    else{
       return (
         <div>
         <MyContext.Consumer>
@@ -45,7 +62,10 @@ class Login extends Component {
                 <button 
                   className="btn btn-primary" 
                   onClick={(e)=>{
-                    context.login(this.state, this.handleRedirect)
+                    context.resetPassword({
+                      password: this.state.password,
+                      email: this.state.email
+                    }, this.handleRedirect)
                   }}
                 >Submit</button>
               </div>
@@ -59,4 +79,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default ResetPassword;

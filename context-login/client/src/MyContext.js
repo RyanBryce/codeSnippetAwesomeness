@@ -70,6 +70,13 @@ export class MyProvider extends Component {
               cb(this.state.username)
             }
           })
+        },
+        resetPassword:(resetData, cb) => {
+          API.resetPassword(resetData).then((res) => {
+            if (cb) {
+              cb()
+            }
+          })
         }
       }}>
         {this.props.children}

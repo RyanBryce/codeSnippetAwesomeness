@@ -16,9 +16,10 @@ module.exports = {
       return new Promise((resolve, reject) => {
         // search for user with the given email
         db.User.findOne({        
-            email: req.params.email
+            email: req.body.email
         })
         .then((userObj) => {
+          console.log("this is userObj", userObj);
           if (!userObj) return reject(404);
           // user exists, assign token with expiration date
           const resetPasswordToken = token;
@@ -28,7 +29,7 @@ module.exports = {
           // token and expiration date
           db.User.findOneAndUpdate(
             {
-              email: req.params.email
+              email: req.body.email
             },
             {
               $set: {
@@ -40,6 +41,7 @@ module.exports = {
               new: true
             })
             .then(function (updatedUser) {
+              console.log("this is updated user", updatedUser);
               //  console.log(val);
               // if (!val) return reject(err);
 
@@ -58,18 +60,17 @@ module.exports = {
             service: 'gmail',
             auth: {
               user: process.env.COMPEMAIL,
-              /////////////////add config file to pull in password
               pass: process.env.COMPPASSWORD
             }
           });
 
           var mailOptions = {
             to: promObj.user.email,
-            from: 'welcometowarmode@gmail.com',
-            subject: 'welcometowarmode.com Password Reset',
+            from: 'componentsuit@gmail.com',
+            subject: 'Password Reset',
             text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
               'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-              'http://' + req.headers.host + '/reset/' + promObj.token + '\n\n' +
+              'http://' + req.headers.host + '/password/reset/' + promObj.token + '\n\n' +
               'If you did not request this, please ignore this email and your password will remain unchanged.\n'
           }
 
@@ -97,34 +98,36 @@ module.exports = {
       });
   },
   checkToken: (req, res) => {
+    console.log(req.query);
     db.User.findOne({
-        resetPasswordToken: req.params.token,
+        resetPasswordToken: req.query.token,
         resetPasswordExpires: {
           $gt: Date.now()
         }
       })
       .then(function (user) {
-        console.log(user, "this is reset user data");
+       
         if (!user && typeof user === "object") {
           res.send({
-            email: user.dataValues.email,
             tokenStatus: "expired"
           });
         } else {
           res.send({
-            email: user.dataValues.email,
+            email: user.email,
             tokenStatus: "success"
           });
         }
-      });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   },
   resetPassword: (req, res) => {
+
     new Promise((resolve, reject) => {
         // search for user with the given email
         db.User.findOne({
-          where: {
             email: req.body.email
-          }
         }).then((userObj) => {
           const resetPassword = req.body.password
           const saltRounds = 10;
@@ -133,6 +136,7 @@ module.exports = {
               // Store hash in your password DB.
               // save the user model with the newly added
               // token and expiration date
+              console.log(userObj)
               db.User.findOneAndUpdate(
                 {
                   _id: userObj._id
@@ -149,7 +153,7 @@ module.exports = {
                   // if (!userObj) return reject(err);
 
                   resolve({
-                    user: userObj.dataValues
+                    user: userObj
                   });
                 });
             });

@@ -33,7 +33,7 @@ var userSchema = new Schema({
     type: String,
     required: false
   },
-  resetPasswordToken: {
+  resetPasswordExpires: {
     type: Date,
     required: false
   }

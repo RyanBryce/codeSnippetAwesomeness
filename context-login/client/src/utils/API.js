@@ -17,6 +17,16 @@ export default {
     return axios.get("/api/user/session")
   },
   forgotPassword: (email) => {
-    return axios.get("/api/user/session")
+    return axios.post("/api/reset/", {email})
+  },
+  checkToken: (token) => {
+    return axios.get(`/api/reset/`, {
+      params: {
+        token
+      }
+    })
+  },
+  resetPassword (resetData) {
+    return axios.put("/api/reset", resetData)
   }
 }
