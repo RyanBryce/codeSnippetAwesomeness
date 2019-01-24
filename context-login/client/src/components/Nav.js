@@ -21,16 +21,23 @@ const Nav = () => {
             }
             {
               !context.state.loggedIn ? (
-                 <li className="nav-item">
+                <li className="nav-item">
                   <Link className="nav-link" to="/signup">signup</Link>
                 </li>
               ):(
                 <Fragment></Fragment>
               )
             }
-            <li className="nav-item">
-              <Link className="nav-link" to={`/profile/${context.state.username}`}>profile</Link>
-            </li>
+            {
+              !context.state.loggedIn ? (
+                <Fragment></Fragment>
+              ) : (
+                
+                <li className="nav-item">
+                  <Link className="nav-link" to={`/profile/${context.state.username}`}>profile</Link>
+                </li>
+              )
+            }
           </ul>
         )
       }}
