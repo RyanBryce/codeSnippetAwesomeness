@@ -18,7 +18,7 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-function userSetup(req, res, next) {
+function userAndCartSetup(req, res, next) {
   if (!req.session.user) {
     req.session.user = {
       _id: null,
@@ -31,9 +31,12 @@ function userSetup(req, res, next) {
     //NOTE: not sure why i have this here again... maybe i should comment more :?
     req.session.user.loggedIn = false;
   }
+  if (!req.session.cart) {
+    req.session.cart = []
+  }
   next()
 }
-app.use(userSetup)
+app.use(userAndCartSetup)
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

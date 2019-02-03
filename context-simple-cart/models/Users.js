@@ -36,7 +36,16 @@ var userSchema = new Schema({
   resetPasswordExpires: {
     type: Date,
     required: false
-  }
+  },
+  orders: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Order'
+  }],
+  adresses: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Address'
+  }]
+  
 });
 
 // Create the Note model using the noteSchema
