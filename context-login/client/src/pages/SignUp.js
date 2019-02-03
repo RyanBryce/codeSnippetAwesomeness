@@ -116,12 +116,35 @@ class SignUp extends Component {
                 </div>
                 <div className="form-group">
                   <label >Password</label>
-                  <input type="password" className="form-control"  placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} style={!this.state.validEmail ? this.styles.invalid : this.styles.success}   
+                  <input 
+                  type="password" 
+                  className="form-control"
+                  placeholder="Password" 
+                  name="password" 
+                  value={this.state.password} 
+                  onChange={this.handleChange} 
+                  style={
+                    !this.state.validEmail ?
+                    this.styles.invalid :
+                    this.styles.success
+                    }   
                   />
                 </div>
                 <div className="form-group">
                   <label >Confirm Password</label>
-                  <input type="password" className="form-control"  placeholder="Confirm Password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange} style={!this.state.validEmail ? this.styles.invalid : this.styles.success } />
+                  <input 
+                    type="password" 
+                    className="form-control"  
+                    placeholder="Confirm Password" 
+                    name="confirmPassword" 
+                    value={this.state.confirmPassword} 
+                    onChange={this.handleChange} 
+                    style={
+                      !this.state.validEmail ?
+                      this.styles.invalid : 
+                      this.styles.success 
+                      }
+                    />
                 </div>
                 {
                   !this.state.validPassword && (
@@ -141,7 +164,8 @@ class SignUp extends Component {
                     !this.state.email||
                     !this.state.password || 
                     !this.state.username || 
-                    !this.state.confirmPassword}
+                    !this.state.confirmPassword
+                  }
                     >Submit</button>
               </form>
              </React.Fragment>
