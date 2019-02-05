@@ -34,6 +34,11 @@ function userAndCartSetup(req, res, next) {
   if (!req.session.cart) {
     req.session.cart = []
   }
+  if (!req.session.address) {
+    req.session.address._id = {
+      _id: null
+    }
+  }
   next()
 }
 app.use(userAndCartSetup)

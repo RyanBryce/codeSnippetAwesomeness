@@ -7,9 +7,8 @@ var Schema = mongoose.Schema;
 var orderSchema = new Schema({
 
   user: {
-    type: String,
-    required: true,
-    unique: true
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   products: [{
     type: Schema.Types.ObjectId,
