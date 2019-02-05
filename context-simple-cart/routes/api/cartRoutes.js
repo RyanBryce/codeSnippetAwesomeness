@@ -1,11 +1,13 @@
-const resetCrtl = require('../../controllers/passwordResetCtrl');
+const cartCtrl= require('../../controllers/cartCtrl');
 const router = require('express').Router();
 
 
 router.route('/')
-  .get(resetCrtl.checkToken)
-  .post(resetCrtl.forgot)
-  .put(resetCrtl.resetPassword)
+  .get(cartCtrl.getCart)
+
+router.route('/:id')
+  .delete(cartCtrl.deleteItemFromCart)
+  .post(cartCtrl.addToCart)
 
 
 module.exports = router
