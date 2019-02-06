@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {MyProvider} from './MyContext.js';
+import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
@@ -10,6 +11,7 @@ import Cart from './pages/Cart';
 import Order from './pages/Order';
 import Products from './pages/Products';
 import Nav from './components/Nav'
+
 
 class App extends Component {
   render() {
@@ -21,7 +23,9 @@ class App extends Component {
             <Nav></Nav>
             <Switch>
 
-              <Route exact path="/" component={Login}></Route>
+              <Route exact path="/" component={Home}></Route>
+
+              <Route exact path="/login" component={Login}></Route>
               
               <Route exact path="/signup" component={SignUp}></Route>
 

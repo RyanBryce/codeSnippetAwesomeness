@@ -8,10 +8,13 @@ const Nav = () => {
       {(context)=> {
         return(
           <ul className="nav justify-content-center">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">Home</Link>
+          </li>
             {
               !context.state.loggedIn ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/">Login</Link>
+                  <Link className="nav-link" to="/login">Login</Link>
                 </li>
               ):(
                 <li className="nav-item">
@@ -47,7 +50,7 @@ const Nav = () => {
     
             <li className="nav-link">
             <Link to="/cart">
-              <i className="fa-fw fa fa-shopping-cart"></i><span className="badge badge-success">9</span>
+              <i className="fa-fw fa fa-shopping-cart"></i><span className="badge badge-success">{context.state.cart.length}</span>
               {/* used only for  screen readers*/}
               <span className="sr-only">Your Cart</span>
             </Link>

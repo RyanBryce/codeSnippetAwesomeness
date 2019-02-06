@@ -3,6 +3,8 @@
 //   productName: String,
 //   price: Number,
 //   productImg: String
+//   productDescription: String
+//   category: String
 // }
 var db = require('../models');
 module.exports = {

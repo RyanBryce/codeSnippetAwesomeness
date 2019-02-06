@@ -21,6 +21,15 @@ var productSchema = new Schema({
     type: String,
     required: true
   },
+  productDescription: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
+
 });
 
 // Create the Note model using the noteSchema
