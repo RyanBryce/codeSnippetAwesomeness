@@ -20,11 +20,11 @@ module.exports = {
     db.Product.find({})
     .then((product) => {
         res.status(200).json(product)
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(404).json(err)
-      })
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).json(err)
+    })
   },
   getProductById (req, res){
     db.Product.findById(req.params.id)

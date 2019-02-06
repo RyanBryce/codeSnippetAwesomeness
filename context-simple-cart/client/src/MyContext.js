@@ -9,7 +9,10 @@ export class MyProvider extends Component {
     username: "",
     email: "",
     password: "",
-    loggedIn: false
+    loggedIn: false,
+    cart: [],
+    address: [],
+    // orders: [] not sure if i'm going to do this yet, for now i know if your not logged in i'll send you an email about your order, but could be usefull for populate all logged in users orders on site load to disable repeated API calls
   }
   componentDidMount (){
     API.session().then((user) => {

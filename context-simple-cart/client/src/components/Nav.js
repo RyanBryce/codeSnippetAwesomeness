@@ -22,7 +22,7 @@ const Nav = () => {
             {
               !context.state.loggedIn ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/signup">signup</Link>
+                  <Link className="nav-link" to="/signup">Signup</Link>
                 </li>
               ):(
                 <Fragment></Fragment>
@@ -34,10 +34,25 @@ const Nav = () => {
               ) : (
                 
                 <li className="nav-item">
-                  <Link className="nav-link" to={`/profile/${context.state.username}`}>profile</Link>
+                  <Link className="nav-link" to={`/profile/${context.state.username}`}>Profile</Link>
                 </li>
               )
             }
+            <li className="nav-item">
+              <Link 
+              className="nav-link" 
+              to="/products"
+              >Products</Link>
+            </li>
+    
+            <li className="nav-link">
+            <Link to="/cart">
+              <i className="fa-fw fa fa-shopping-cart"></i><span className="badge badge-success">9</span>
+              {/* used only for  screen readers*/}
+              <span className="sr-only">Your Cart</span>
+            </Link>
+
+            </li>
           </ul>
         )
       }}
