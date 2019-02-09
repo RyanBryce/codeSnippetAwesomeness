@@ -31,6 +31,7 @@ export class MyProvider extends Component {
     return (
       <MyContext.Provider value={{
         state: this.state,
+        //Auth methods
         login: (userData, cb) =>{
           API.login(userData)
           .then((loggedInUser)=> {
@@ -87,11 +88,38 @@ export class MyProvider extends Component {
             }
           })
         },
+        //product Methods
         getProducts: () => {
           this.setState({
             products: API.getAllProducts().data
           })
-        }
+        },
+        //cart methods
+        getCart: () => {
+          API.getCart()
+          .then((cart) => {
+            this.setState({
+              cart: cart.data
+            })
+          })
+        },
+        addProductToCart: (productId) => {
+          API.addProductToCart(productId)
+          .then((cart) => {
+            this.setState({
+              cart: cart.data
+            })
+          })
+        },
+        removeProductFromCart: (productId) => {
+          API.removeProductFromCart(productId)
+          .then((cart) => {
+            this.setState({
+              cart: cart.data
+            })
+          })
+        },
+
       }}>
         {this.props.children}
       </MyContext.Provider>

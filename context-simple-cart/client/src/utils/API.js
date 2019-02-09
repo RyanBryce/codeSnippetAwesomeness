@@ -29,7 +29,19 @@ export default {
   resetPassword (resetData) {
     return axios.put("/api/reset", resetData)
   },
+  //product Methods  api/product
   getAllProducts () {
     return axios.get("/api/product")
-  }
+  },
+  
+  //cart methods api/product api/product/:id
+  getCart: () => {
+    return axios.get("/api/cart")
+  },
+  addProductToCart: (productId) => {
+    return axios.post(`/api/cart/${productId}`)
+  },
+  removeProductFromCart: (productId) => {
+    return axios.delete(`/api/cart/${productId}`)
+  },
 }

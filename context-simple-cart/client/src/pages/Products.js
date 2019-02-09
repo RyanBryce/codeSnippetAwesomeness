@@ -14,7 +14,11 @@ class Products extends Component {
                   <div className="row justify-content-center">
                     {
                       context.state.products.map((product) => {
-                        return <ProductCard {...product} key={product._id}></ProductCard>
+                        return <ProductCard 
+                        key={product._id} 
+                        addProductToCart={context.addProductToCart}
+                        {...product}
+                        ></ProductCard>
                       })
                     }
                   </div>

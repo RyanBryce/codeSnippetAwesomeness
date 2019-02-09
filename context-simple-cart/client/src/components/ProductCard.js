@@ -30,7 +30,7 @@ class ProductCard extends Component {
   render() {
     return (
       <div className="card col-sm-3 text-center" style={styles.cardStyle} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-        <Link to={`product/${this.props.productName}`}>
+        <Link to={`product/${this.props._id}`}>
           <img src={this.props.productImg} 
           className = "card-img-top"
           alt={this.props.productName} 
@@ -43,13 +43,17 @@ class ProductCard extends Component {
           (
             <div className="card-body">
                 <h5 className="card-title">
-                  <Link to={`product/${this.props.productName}`}>{this.props.productName}</Link>
+                  <Link to={`product/${this._id}`}>{this.props.productName}</Link>
                 </h5>
+                <p>Price: {this.props.price}</p>
                 <p 
                 className="card-text">
                 {this.props.productDescription.slice(0, 150)} 
-                <Link to={`product/${this.props.productName}`}>...more details</Link></p>
-                <Link type="button" className="btn btn-warning" to={`product/${this.props.productName}`}>Add to Cart</Link>
+                <Link to={`product/${this.props._id}`}>...more details</Link></p>
+                <button className="btn btn-success" onClick={(e) => {
+                  e.preventDefault();
+                  this.props.addProductToCart(this.props._id)
+                }}>Add To Cart</button>
             </div>
           )
         }
