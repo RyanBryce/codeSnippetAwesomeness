@@ -28,5 +28,8 @@ export default {
   },
   resetPassword (resetData) {
     return axios.put("/api/reset", resetData)
+  },
+  getAllProducts () {
+    return axios.get("/api/product")
   }
 }
